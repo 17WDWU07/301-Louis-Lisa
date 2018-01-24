@@ -2,72 +2,72 @@
 {
 "name":"Carey Kwan",
 "gender":"Female",
-"age":"30",
+"age":30,
 "socialmedia":"Instagram"
 },
 {
 "name":"Forrest Wilson-Jennings",
 "gender":"Male",
-"age":"22",
+"age":22,
 "socialmedia":"Twitter"
 },
 {
 "name":"Louis Kelly",
 "gender":"Male",
-"age":"23",
+"age":23,
 "socialmedia":"Steam"
 },
 {
 "name":"Lisa Pearson",
 "gender":"Female",
-"age":"29",
+"age":29,
 "socialmedia":"Twitter"
 },
 {
 "name":"Jesse Walsh",
 "gender":"Male",
-"age":"31",
+"age":31,
 "socialmedia":"Facebook"
 },
 {
 "name":"Florence",
 "gender":"Female",
-"age":"23",
+"age":23,
 "socialmedia":"Facebook"
 },
 {
 "name":"Lewis Plumley",
 "gender":"Male",
-"age":"20",
+"age":20,
 "socialmedia":"Facebook"
 },
 {
 "name":"Anthony Gordon Ayers",
 "gender":"Male",
-"age":"28",
+"age":28,
 "socialmedia":"Facebook"
 },
 {
 "name":"Cam Shaw",
 "gender":"Male",
-"age":"22",
+"age":22,
 "socialmedia":"Twitter"
 },
 {
 "name":"Duke Apelinga",
 "gender":"Male",
-"age":"23",
+"age":23,
 "socialmedia":"Instagram"
 },
 {
 "name":"Bruce Wayne",
 "gender":"Male",
-"age":"20",
+"age":20,
 "socialmedia":"Youtube"
 },
 {
 "name":"Kelsey Smith",
 "gender":"Female",
-"age":"24",
+"age":24,
 "socialmedia":"Instagran"
-},]
+}]
