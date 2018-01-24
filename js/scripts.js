@@ -37,10 +37,10 @@ google.charts.setOnLoadCallback(drawDashboard);
    					width: "100%",
    					height: "100%",
    					legend: "none",
-   					title: "age vs income"
+   					title: "Name and Age"
    				},
    				view: {
-   					columns: [2,0]
+   					columns: [0,2]
    				}
    			})
    			//END OF SCATTERCHART
@@ -48,14 +48,13 @@ google.charts.setOnLoadCallback(drawDashboard);
    			//TABLE
    			var table = new google.visualization.ChartWrapper({
    				chartType: 'Table',
-   				containerId: 'table',
+   				containerId: 'chart2',
    				options: {
    					width: '100%'
    				}
    			})
    			//END OF TABLE
 
-   			//Controls
 
    			var ageRangeSlider = new google.visualization.ControlWrapper({
    				controlType: 'NumberRangeFilter',
@@ -77,6 +76,8 @@ google.charts.setOnLoadCallback(drawDashboard);
    					}
    				}
    			})
+dashboard.bind([ageRangeSlider,genderPicker],[chart1,table]);
+dashboard.draw(data);
 
 	},//END OF SUCCESS FUNCTION
 		error:function(error){
