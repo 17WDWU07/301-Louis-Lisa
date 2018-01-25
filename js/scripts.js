@@ -29,26 +29,42 @@ google.charts.setOnLoadCallback(drawDashboard);
 			var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard'));
 			//END OF DATA TABLE SET UP
 
-			//SCATTERCHART
+			//Histogram
 			var chart1 = new google.visualization.ChartWrapper({
-   				chartType: 'ScatterChart',
+   				chartType: 'Histogram',
    				containerId: 'chart1',
    				options: {
    					width: "100%",
    					height: "100%",
    					legend: "none",
-   					title: "Name and Age"
+   					title: "Social media and Age"
    				},
    				view: {
-   					columns: [0,2]
+   					columns: [3,2]
    				}
    			})
-   			//END OF SCATTERCHART
+   			//END OF Histogram
+
+            //Histogram
+            var chart2 = new google.visualization.ChartWrapper({
+               chartType: 'ScatterChart',
+               containerId: 'chart2',
+               options: {
+                  width: "100%",
+                  height: "100%",
+                  legend: "none",
+                  title: "Social media and Age"
+               },
+               view: {
+                  columns: [0,2]
+               }
+            })
+            //END OF Histogram
 
    			//TABLE
    			var table = new google.visualization.ChartWrapper({
    				chartType: 'Table',
-   				containerId: 'chart2',
+   				containerId: 'table',
    				options: {
    					width: '100%'
    				}
@@ -76,8 +92,32 @@ google.charts.setOnLoadCallback(drawDashboard);
    					}
    				}
    			})
-dashboard.bind([ageRangeSlider,genderPicker],[chart1,table]);
-dashboard.draw(data);
+            dashboard.bind([ageRangeSlider,genderPicker],[chart1, chart2, table]);
+            dashboard.draw(data);
+
+            google.visualization.events.addListener(ageRangeSlider, 'statechange', function(){
+               var range = ageRangeSlider.getState();
+               console.log(range);
+               var view = new google.visualization.DataView(data);
+               view.setRows(data.getFilteredRows([
+
+               {
+                  column: 2,
+                  minValue: range.lowValue,
+                  maxValue: range.highValue
+
+               }
+
+               ]));
+               console.log(view)
+               var filteredRows = view.ol;
+               var newData = [];
+               for (var i = 0; i < filteredRows.length; i++) {
+                  newData.push(dataJSON[filteredRows[i]]);
+               };
+               console.log(newData);
+               drawpie(newData);
+            })
 
 	},//END OF SUCCESS FUNCTION
 		error:function(error){
@@ -85,3 +125,39 @@ dashboard.draw(data);
 		}
 	})
 } //END OF drawDashboard FUNCTION
+
+  function drawpie(data){
+
+   var datagender = new google.visualization.DataTable();
+   datagender.addColumn('string','gender');
+   datagender.addColumn('number','count');
+
+   var malenumber = 0;
+   var femalenumber = 0;
+
+      for (var i = 0; i < data.length; i++) {
+
+      if (data[i].gender == 'Male'){
+         malenumber++;
+      }
+
+      if (data[i].gender == 'Female'){
+         femalenumber++;
+      }
+
+   }
+      console.log(malenumber);
+      console.log(femalenumber);
+
+      datagender.addRow(['Male', malenumber]);
+      datagender.addRow(['Female', femalenumber]);
+
+      var options = {
+         title: 'Gender'
+      };
+
+      var piechart = new google.visualization.PieChart(document.getElementById('chart3'))
+      piechart.draw(datagender,options)
+
+  }
+
