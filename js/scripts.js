@@ -61,17 +61,6 @@ google.charts.setOnLoadCallback(drawDashboard);
             })
             //END OF Histogram
 
-   			//TABLE
-   			var table = new google.visualization.ChartWrapper({
-   				chartType: 'Table',
-   				containerId: 'table',
-   				options: {
-   					width: '100%'
-   				}
-   			})
-   			//END OF TABLE
-
-
    			var ageRangeSlider = new google.visualization.ControlWrapper({
    				controlType: 'NumberRangeFilter',
    				containerId: 'control1',
@@ -92,7 +81,7 @@ google.charts.setOnLoadCallback(drawDashboard);
    					}
    				}
    			})
-            dashboard.bind([ageRangeSlider,genderPicker],[chart1, chart2, table]);
+            dashboard.bind([ageRangeSlider,genderPicker],[chart1, chart2]);
             dashboard.draw(data);
 
             google.visualization.events.addListener(ageRangeSlider, 'statechange', function(){
