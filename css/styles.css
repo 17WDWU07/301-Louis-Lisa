@@ -42,20 +42,33 @@ h1{
 
 #chart1{
 	grid-column: span 2;
-	background-color: red;
 }
 
 #chart2{
 	grid-column: span 1;
-	background-color: blue;
 }
 
 #chart3{
-	background-color: yellow;
 }
 
 #controls{
-	background-color: green;
+	border-bottom-right-radius: 9px;
+	border-bottom-left-radius: 9px;
+	background-color: aqua;
 	grid-column: span 2;
 	text-align: center;
+}
+
+#control1{
+	float: left; 
+	padding: 25px;
+	margin-left: 45px;
+	margin-top: 20px;
+}
+
+#control2{
+	float: right;
+	padding: 25px;
+	margin-right: 45px;
+	margin-top: 20px;
 }

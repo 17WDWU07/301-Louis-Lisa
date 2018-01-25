@@ -15,7 +15,7 @@
 "name":"Louis Kelly",
 "gender":"Male",
 "age":23,
-"socialmedia":"Steam"
+"socialmedia":"Other"
 },
 {
 "name":"Lisa Pearson",
@@ -63,11 +63,11 @@
 "name":"Bruce Wayne",
 "gender":"Male",
 "age":20,
-"socialmedia":"Youtube"
+"socialmedia":"Other"
 },
 {
 "name":"Kelsey Smith",
 "gender":"Female",
 "age":24,
-"socialmedia":"Instagran"
+"socialmedia":"Instagram"
 }]

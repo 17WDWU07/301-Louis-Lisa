@@ -30,19 +30,32 @@ google.charts.setOnLoadCallback(drawDashboard);
 			//END OF DATA TABLE SET UP
 
 			//Histogram
-			var chart1 = new google.visualization.ChartWrapper({
-   				chartType: 'Histogram',
-   				containerId: 'chart1',
-   				options: {
-   					width: "100%",
-   					height: "100%",
-   					legend: "none",
-   					title: "Social media and Age"
-   				},
-   				view: {
-   					columns: [3,2]
-   				}
-   			})
+			// var chart1 = new google.visualization.ChartWrapper({
+   // 				chartType: 'Histogram',
+   // 				containerId: 'chart1',
+   // 				options: {
+   // 					width: "100%",
+   // 					height: "100%",
+   // 					legend: "none",
+   // 					title: "Social media and Age",
+   //                backgroundColor: {fill:"transparent"},
+   //                legendTextStyle: { color: '#FFF' },
+   //                titleTextStyle: { color: 'Aqua'},
+   //                hAxis: {
+   //                   color: '#FFF',
+   //                   textStyle: {color: '#FFF'}
+   //                },
+   //                vAxis: {
+   //                   color: '#FFF',
+   //                   textStyle: {color: '#FFF'}
+   //                },
+   //                colors: ['#3b5998' , '#55acee','#FF0000','#fffc00']
+   // 				},
+   // 				view: {
+   // 					columns: [3,2]
+   // 				},
+
+   // 			})
    			//END OF Histogram
 
             //Histogram
@@ -53,7 +66,19 @@ google.charts.setOnLoadCallback(drawDashboard);
                   width: "100%",
                   height: "100%",
                   legend: "none",
-                  title: "Social media and Age"
+                  title: "Name and Age",
+                  backgroundColor: {fill:"transparent"},
+                  legendTextStyle: { color: '#FFF' },
+                  titleTextStyle: { color: 'Aqua'},
+                  hAxis: {
+                     color: '#FFF',
+                     textStyle: {color: '#FFF'}
+                  },
+                  vAxis: {
+                     color: '#FFF',
+                     textStyle: {color: '#FFF'}
+                  },
+                  colors:['aqua']
                },
                view: {
                   columns: [0,2]
@@ -76,12 +101,11 @@ google.charts.setOnLoadCallback(drawDashboard);
    					filterColumnLabel: 'Gender',
    					ui: {
    						allowMultiple: false,
-   						allowTyping: false,
-   						labelStacking: 'vertical'
+   						allowTyping: false
    					}
    				}
    			})
-            dashboard.bind([ageRangeSlider,genderPicker],[chart1, chart2]);
+            dashboard.bind([ageRangeSlider,genderPicker],[chart2]);
             dashboard.draw(data);
 
             google.visualization.events.addListener(ageRangeSlider, 'statechange', function(){
@@ -106,6 +130,7 @@ google.charts.setOnLoadCallback(drawDashboard);
                };
                console.log(newData);
                drawpie(newData);
+               drawbar(newData);
             })
 
 	},//END OF SUCCESS FUNCTION
@@ -135,18 +160,85 @@ google.charts.setOnLoadCallback(drawDashboard);
       }
 
    }
-      console.log(malenumber);
-      console.log(femalenumber);
 
       datagender.addRow(['Male', malenumber]);
       datagender.addRow(['Female', femalenumber]);
 
       var options = {
-         title: 'Gender'
+         title: 'Gender',
+         backgroundColor: {fill:"transparent"},
+         legendTextStyle: { color: '#FFF' },
+         titleTextStyle: { color: 'Aqua'},
+         hAxis: {
+            color: '#FFF',
+            textStyle: {color: '#FFF'}
+            },
+            vAxis: {
+            color: '#FFF',
+            textStyle: {color: '#FFF'}
+            },
+            colors:['aqua','black']
       };
 
       var piechart = new google.visualization.PieChart(document.getElementById('chart3'))
       piechart.draw(datagender,options)
+
+  }
+
+function drawbar(data){
+
+   var datamedia = new google.visualization.DataTable();
+   datamedia.addColumn('string','socialmedia');
+   datamedia.addColumn('number','count');
+
+   var instagram = 0;
+   var facebook = 0;
+   var twitter = 0;
+   var other = 0;
+
+      for (var i = 0; i < data.length; i++) {
+
+      if (data[i].socialmedia == 'Instagram'){
+         instagram++;
+      }
+
+      if (data[i].socialmedia == 'Facebook'){
+         facebook++;
+      }
+
+      if (data[i].socialmedia == 'Twitter'){
+         twitter++;
+      }
+
+      if (data[i].socialmedia == 'Other'){
+         other++;
+      }
+
+   }
+
+      datamedia.addRow(['Instagram', instagram]);
+      datamedia.addRow(['Facebook', facebook]);
+      datamedia.addRow(['Twitter', twitter]);
+      datamedia.addRow(['Other', other]);
+
+      var options = {
+         title: 'Preffered Social media',
+         backgroundColor: {fill:"transparent"},
+         legendTextStyle: { color: '#FFF' },
+         titleTextStyle: { color: 'Aqua'},
+         hAxis: {
+            color: '#FFF',
+            textStyle: {color: '#FFF'}
+            },
+            vAxis: {
+            color: '#FFF',
+            textStyle: {color: '#FFF'}
+            },
+            colors:['aqua']
+      };
+
+      var barchart = new google.visualization.BarChart(document.getElementById('chart1'))
+      barchart.draw(datamedia,options)
 
   }
 
